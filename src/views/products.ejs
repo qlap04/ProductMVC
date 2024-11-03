@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="/css/productsStyles.css">
+</head>
+
+<body>
+    <h1>Category Product List</h1>
+    <% if (products.length> 0) { %>
+        <ul class="product-list">
+            <% products.forEach(product=> { %>
+                <li class="product-item">
+                    <h2 class="product-title">
+                        <%= product.title %>
+                    </h2>
+                    <p class="product-description">
+                        <%= product.description %>
+                    </p>
+                    <p class="product-category">Category: <%= product.category %>
+                    </p>
+                    <p class="product-price">Price: $<%= product.price.toFixed(2) %>
+                    </p>
+
+                    <!-- Hiển thị hình ảnh thumbnail -->
+                    <img src="<%= product.thumbnail %>" alt="<%= product.title %> Thumbnail" class="product-thumbnail">
+
+                    <!-- Hiển thị tất cả các hình ảnh trong mảng images -->
+                    <% if (product.images && product.images.length> 0) { %>
+                        <div class="product-images">
+                            <% product.images.forEach((image, index)=> { %>
+                                <img src="<%= image %>" alt="<%= product.title %> Image <%= index + 1 %>"
+                                    class="product-image">
+                                <% }); %>
+                        </div>
+                        <% } %>
+                </li>
+                <% }); %>
+        </ul>
+        <% } else { %>
+            <p>No products available at the moment.</p>
+            <% } %>
+</body>
+
+</html>
